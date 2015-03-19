@@ -1,0 +1,8 @@
+make
+sudo make install
+
+find . -name liborocos-kdl.so.1.1
+./src/liborocos-kdl.so.1.1
+
+/ros_ws/hydro/catkin_ws/src/RobotManipulation_WS2013/orocos_kinematics_dynamics/orocos_kdl/build$ sudo cp ./src/liborocos-kdl.so.1.1 /usr/local/lib/liborocos-kdl.so.1.1
+
