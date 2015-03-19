@@ -21,6 +21,7 @@ using namespace std;
 
 #include "youbot/YouBotBase.hpp"
 #include "youbot/YouBotManipulator.hpp"
+#include "youbot/YouBotGripper.hpp"
 
 
 using namespace youbot;
@@ -35,7 +36,7 @@ const char* joint_names[] = {
 		"arm_joint_4",
 		"arm_joint_5",
 		"gripper_finger_joint_l",
-		"gripper_finger_joint_l"
+		"gripper_finger_joint_r"
 };
 
 double d2r(double v) {
@@ -53,7 +54,6 @@ int main() {
 	YouBotManipulator youBotManipulator("youbot-manipulator", YOUBOT_CONFIGURATIONS_DIR);
         youBotManipulator.doJointCommutation();
         youBotManipulator.calibrateManipulator();
-
 
 
 	// connect with V-rep
@@ -81,12 +81,11 @@ int main() {
         youBotManipulator.getArmJoint(i).setData(positions[i] * radian);
 
 	// and the simulated one
-	jointInterface->setJointPosition(index[i], positions[i]);
+		jointInterface->setJointPosition(index[i], positions[i]);
 
     }
 
-
-
+	
 
 
 

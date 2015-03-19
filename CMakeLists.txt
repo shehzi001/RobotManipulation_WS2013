@@ -2,7 +2,7 @@ cmake_minimum_required (VERSION 2.6)
 project (HELLO) 
 
 
-set(youbot_driver_PACKAGE_PATH "/home/matthias/workspace/youbot_driver")
+set(youbot_driver_PACKAGE_PATH "~/ros_ws/hydro/catkin_ws/src/RobotManipulation_WS2013/youbot_driver") 
 
 SET(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/external/cmake_modules")
 
@@ -36,17 +36,26 @@ link_directories(
     ${VREP_DIR}/programming
 )
 
-add_executable (example 
-    src/example.cpp 
+add_executable (kdl_kinematic_solver
+    #src/example.cpp 
+    src/kdl_kinematic_solver/kdl_kinematic_solver_test.cpp
     src/vrep/VRepRobotInterface.cpp
 
     ${VREP_DIR}/programming/remoteApi/extApi.c
     ${VREP_DIR}/programming/remoteApi/extApiPlatform.c
 ) 
 
-target_link_libraries(example v_repExtRemoteApi pthread orocos-kdl
+target_link_libraries(kdl_kinematic_solver v_repExtRemoteApi pthread orocos-kdl
         ${OODL_YOUBOT_LIBRARIES}
         ${Boost_LIBRARIES}
 )
 
+add_executable (kdl_simple_example
+    #src/example.cpp 
+    src/kdl_kinematic_solver/simple_example.cpp
+) 
+target_link_libraries(kdl_simple_example orocos-kdl
+        ${OODL_YOUBOT_LIBRARIES}
+        ${Boost_LIBRARIES}
+)
 
